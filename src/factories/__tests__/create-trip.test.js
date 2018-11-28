@@ -8,8 +8,9 @@ test('create a trip and parse a trip string', () => {
   expect(trip.get()).toEqual(
     expect.objectContaining({
       driver: 'Dan',
-      speed: 17.3,
-      totalTime: 30,
+      miles: 17.3,
+      totalTime: 0.5,
+      averageSpeed: 34.6,
     }),
   );
 });
@@ -17,8 +18,9 @@ test('create a trip and parse a trip string', () => {
 test('create a trip and set from object', () => {
   const input = {
     driver: 'Jason',
-    speed: 97,
+    miles: 12,
     totalTime: 140,
+    averageSpeed: 97,
   };
   const trip = createTrip();
   trip.set(input);
