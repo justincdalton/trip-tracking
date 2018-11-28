@@ -20,7 +20,7 @@ module.exports = function parseEntities(input) {
   });
 
   trips.forEach((trip) => {
-    drivers[trip.get().driver].addTrip(trip);
+    drivers[trip.driver].addTrip(trip);
   });
 
   return Object.values(drivers);

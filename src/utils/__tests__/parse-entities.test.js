@@ -12,5 +12,5 @@ const sampleInput = [
 test('parses the input and returns drivers with trips', () => {
   const result = parseEntities(sampleInput);
   expect(result.length).toEqual(3);
-  expect(result[0].getTrips().length).toEqual(2);
+  expect(result[0].trips.length).toEqual(2);
 });

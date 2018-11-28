@@ -1,42 +1,34 @@
 const timeDiff = require('../utils/time-diff');
 
 module.exports = function createTrip() {
-  let driver;
-  let startTime;
-  let endTime;
-  let totalTime;
-  let miles;
+  return {
+    driver: '',
+    startTime: null,
+    endTime: null,
+    totalTime: 0,
+    miles: 0,
+    parseTripString(input) {
+      const [, rawDriver, rawStartTime, rawEndTime, rawMiles] = input.split(' ');
+      const [startHour, startMinute] = rawStartTime.split(':');
+      const [endHour, endMinute] = rawEndTime.split(':');
 
-  const parseTripString = (input) => {
-    const [, rawDriver, rawStartTime, rawEndTime, rawMiles] = input.split(' ');
-    const [startHour, startMinute] = rawStartTime.split(':');
-    const [endHour, endMinute] = rawEndTime.split(':');
+      this.driver = rawDriver;
+      this.startTime = new Date();
+      this.startTime.setHours(Number.parseInt(startHour, 10));
+      this.startTime.setMinutes(Number.parseInt(startMinute, 10));
+      this.endTime = new Date();
+      this.endTime.setHours(Number.parseInt(endHour, 10));
+      this.endTime.setMinutes(Number.parseInt(endMinute, 10));
 
-    driver = rawDriver;
-    startTime = new Date();
-    startTime.setHours(Number.parseInt(startHour, 10));
-    startTime.setMinutes(Number.parseInt(startMinute, 10));
-    endTime = new Date();
-    endTime.setHours(Number.parseInt(endHour, 10));
-    endTime.setMinutes(Number.parseInt(endMinute, 10));
-
-    miles = Number.parseFloat(rawMiles);
-    totalTime = timeDiff(startTime, endTime);
+      this.miles = Number.parseFloat(rawMiles);
+      this.totalTime = timeDiff(this.startTime, this.endTime);
+    },
+    set(args) {
+      const { driver, miles, totalTime } = args;
+      this.driver = driver;
+      this.miles = miles;
+      this.totalTime = totalTime;
+      return this;
+    },
   };
-
-  const get = () => ({
-    driver,
-    miles,
-    totalTime,
-  });
-
-  const set = (args) => {
-    ({ driver, miles, totalTime } = args);
-  };
-
-  return Object.freeze({
-    parseTripString,
-    get,
-    set,
-  });
 };
