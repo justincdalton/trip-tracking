@@ -3,7 +3,10 @@ module.exports = function createDriver(args) {
   const trips = [];
 
   const addTrip = (trip) => {
-    trips.push(trip);
+    const { speed } = trip.get();
+    if (speed <= 100 && speed >= 5) {
+      trips.push(trip);
+    }
   };
 
   const getName = () => name;

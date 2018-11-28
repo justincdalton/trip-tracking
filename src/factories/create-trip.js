@@ -1,3 +1,5 @@
+const minuteDiff = require('../utils/minute-diff');
+
 module.exports = function createTrip() {
   let driver;
   let startTime;
@@ -5,28 +7,37 @@ module.exports = function createTrip() {
   let totalTime;
   let speed;
 
-  const calculateTotalTime = () => {
-    totalTime = Math.round(new Date(endTime).getTime() - new Date(startTime).getTime()) / 60000;
-  };
-
   const parseTripString = (input) => {
-    let rawSpeed;
-    [, driver, startTime, endTime, rawSpeed] = input.split(' ');
+    const [, rawDriver, rawStartTime, rawEndTime, rawSpeed] = input.split(' ');
+    const [startHour, startMinute] = rawStartTime.split(':');
+    const [endHour, endMinute] = rawEndTime.split(':');
+
+    driver = rawDriver;
+    startTime = new Date();
+    startTime.setHours(Number.parseInt(startHour, 10));
+    startTime.setMinutes(Number.parseInt(startMinute, 10));
+    endTime = new Date();
+    endTime.setHours(Number.parseInt(endHour, 10));
+    endTime.setMinutes(Number.parseInt(endMinute, 10));
+
     speed = Number.parseFloat(rawSpeed);
-    calculateTotalTime();
+
+    totalTime = minuteDiff(startTime, endTime);
   };
 
   const get = () => ({
     driver,
-    startTime,
-    endTime,
     totalTime,
     speed,
   });
 
+  const set = (args) => {
+    ({ driver, speed, totalTime } = args);
+  };
+
   return Object.freeze({
-    calculateTotalTime,
     parseTripString,
     get,
+    set,
   });
 };
