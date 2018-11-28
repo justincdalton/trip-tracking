@@ -4,6 +4,7 @@
   "description": "Generate a report for the driving history of various drivers",
   "main": "src/index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "jest src",
     "lint": "eslint src/**",
     "coverage": "jest --collectCoverageFrom=src/**.js --coverage src"

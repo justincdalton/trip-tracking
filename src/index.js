@@ -1,3 +1,3 @@
-const sum = require('./sum');
+const parseFile = require('./parse-file');
 
-console.log(sum(2, 3).toString());
+parseFile('src/input.txt');
