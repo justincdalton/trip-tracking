@@ -60,25 +60,21 @@ test('calculate results with trips', () => {
       driver: 'Eleanor',
       miles: 13,
       totalTime: 0.2,
-      averageSpeed: 65,
     },
     {
       driver: 'Eleanor',
-      miles: 13,
-      totalTime: 0.2,
-      averageSpeed: 65,
+      miles: 120,
+      totalTime: 2.5,
     },
     {
       driver: 'Eleanor',
-      miles: 13,
-      totalTime: 0.2,
-      averageSpeed: 65,
+      miles: 2,
+      totalTime: 0.15,
     },
     {
       driver: 'Eleanor',
-      miles: 13,
-      totalTime: 0.2,
-      averageSpeed: 65,
+      miles: 32,
+      totalTime: 0.8,
     },
   ];
   tripData.forEach((data) => {
@@ -87,5 +83,5 @@ test('calculate results with trips', () => {
     driver.addTrip(trip);
   });
 
-  expect(driver.calculateTotals()).toEqual('Eleanor: 52 miles @ 65 mph');
+  expect(driver.calculateTotals()).toEqual('Eleanor: 167 miles @ 46 mph');
 });

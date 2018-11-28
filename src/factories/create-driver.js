@@ -3,7 +3,8 @@ module.exports = function createDriver(args) {
   const trips = [];
 
   const addTrip = (trip) => {
-    const { averageSpeed } = trip.get();
+    const { miles, totalTime } = trip.get();
+    const averageSpeed = miles / totalTime;
     if (averageSpeed <= 100 && averageSpeed >= 5) {
       trips.push(trip);
     }
@@ -20,10 +21,10 @@ module.exports = function createDriver(args) {
 
     const totals = trips.reduce(
       (prev, trip) => ({
-        miles: prev.miles + trip.miles,
-        totalTime: prev.totalTime + trip.totalTime,
+        miles: prev.miles + trip.get().miles,
+        totalTime: prev.totalTime + trip.get().totalTime,
       }),
-      {},
+      { miles: 0, totalTime: 0 },
     );
 
     totals.averageSpeed = Math.round(totals.miles / totals.totalTime);

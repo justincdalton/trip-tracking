@@ -10,7 +10,6 @@ test('create a trip and parse a trip string', () => {
       driver: 'Dan',
       miles: 17.3,
       totalTime: 0.5,
-      averageSpeed: 34.6,
     }),
   );
 });
@@ -20,7 +19,6 @@ test('create a trip and set from object', () => {
     driver: 'Jason',
     miles: 12,
     totalTime: 140,
-    averageSpeed: 97,
   };
   const trip = createTrip();
   trip.set(input);

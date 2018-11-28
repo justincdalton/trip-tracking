@@ -6,7 +6,6 @@ module.exports = function createTrip() {
   let endTime;
   let totalTime;
   let miles;
-  let averageSpeed;
 
   const parseTripString = (input) => {
     const [, rawDriver, rawStartTime, rawEndTime, rawMiles] = input.split(' ');
@@ -23,20 +22,16 @@ module.exports = function createTrip() {
 
     miles = Number.parseFloat(rawMiles);
     totalTime = timeDiff(startTime, endTime);
-    averageSpeed = miles / totalTime;
   };
 
   const get = () => ({
     driver,
     miles,
     totalTime,
-    averageSpeed,
   });
 
   const set = (args) => {
-    ({
-      driver, miles, averageSpeed, totalTime,
-    } = args);
+    ({ driver, miles, totalTime } = args);
   };
 
   return Object.freeze({
