@@ -2,6 +2,7 @@
   "name": "trip-tracking",
   "version": "1.0.0",
   "description": "Generate a report for the driving history of various drivers",
+  "repository": "https://github.com/justincdalton/trip-tracking",
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
@@ -17,10 +18,12 @@
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^22.0.1",
-    "jest": "^23.6.0"
+    "jest": "^23.6.0",
+    "nodemon": "^1.18.9"
   },
   "dependencies": {
     "koa": "^2.6.2",
+    "koa-body": "^4.0.4",
     "koa-logger": "^3.2.0",
     "koa-router": "^7.4.0",
     "koa-send": "^5.0.0",

@@ -1,6 +1,7 @@
 const Koa = require('koa');
 const logger = require('koa-logger');
 const send = require('koa-send');
+const body = require('koa-body');
 const Router = require('koa-router');
 const render = require('./middleware/render');
 
@@ -25,7 +26,19 @@ const report = async (ctx) => {
   await send(ctx, 'src/report.txt');
 };
 
-router.get('/', home).get('/report', report);
+const form = async (ctx) => {
+  await ctx.render('form');
+};
+
+router
+  .get('/', home)
+  .get('/report', report)
+  .get('/form', form)
+  .post('/form', body(), (ctx) => {
+    console.log(ctx.request.body);
+    // => POST body
+    ctx.body = JSON.stringify(ctx.request.body);
+  });
 
 app.use(router.routes());
 
