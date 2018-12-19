@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "start": "node src/index.js",
+    "dev": "nodemon src/index.js",
     "test": "jest src",
     "lint": "eslint src/**",
     "coverage": "jest --collectCoverageFrom=src/**.js --coverage src"
@@ -17,5 +18,13 @@
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jest": "^22.0.1",
     "jest": "^23.6.0"
+  },
+  "dependencies": {
+    "koa": "^2.6.2",
+    "koa-logger": "^3.2.0",
+    "koa-router": "^7.4.0",
+    "koa-send": "^5.0.0",
+    "koa-views": "^6.1.5",
+    "swig": "^1.4.2"
   }
 }
